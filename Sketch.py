@@ -3,6 +3,7 @@ import imageio
 import scipy.ndimage
 import cv2
 
+
 print("=========================")
 print("Image To Sketch Converter")
 print("=========================\n")
@@ -25,4 +26,15 @@ i = 255-gray
 blur = scipy.ndimage.filters.gaussian_filter(i,sigma =15)
 r = dodge(blur,gray)
 
-cv2.imwrite('Sketch.png',r)
+
+if '.jpg' in img:
+    img = img.replace('.jpg', '')
+elif '.png' in img:
+    img = img.replace('.png', '')
+elif '.svg' in img:
+    img = img.replace('.svg', '')
+elif '.jpeg' in img:
+    img = img.replace('.jpeg', '')
+
+
+cv2.imwrite(img + ' - Sketch.png',r)
